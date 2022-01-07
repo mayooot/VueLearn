@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue模板语法</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>插值语法</h1>
+        <h3>你好， {{name}}</h3>
+        <hr>
+        <h1>指令语法</h1>
+        <a v-bind:href="url.toUpperCase()">点我访问鼠鼠论坛</a>
+        <a :href="person.url">姓名：{{person.name}}, 年龄: {{person.age}}</a>
+        
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'jack',
+                url: 'https://www.zhihu.com/hot',
+                person: {
+                    name: '陈冠希',
+                    age: 30,
+                    url: 'https://www.zhihu.com/hot'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

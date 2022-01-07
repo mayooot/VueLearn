@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>绑定样式</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+    <style>
+      .basic {
+        height: 300px;;
+        width: 400px;
+        background-color: aliceblue;
+      }
+      .happy {
+        background-color: chartreuse;
+      }
+      .sad {
+        background-color: tomato;
+      }
+      .normal {
+        background-color: bisque;
+      }
+
+      .mod1 {
+        font-size: 30px;
+      }
+
+      .mod2 {
+        border-radius: 30px;
+      }
+
+      .mod3 {
+        margin: 30px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定 -->
+      <div class="basic" :class="mood" @click="changeMood">{{name}}</div> <br> <br>
+
+      <!-- 绑定class样式--数组写法，适用于：要绑定的样式个数不确定，名字也不确定-->
+      <div class="basic" :class="classArr" @click="changeMood">{{name}}</div> <br> <br>
+
+      <!-- 这里的:class绑定的数组，如果不加 '', 会认为是一个变量，Vue会从属性中去找，要想正常工作，
+           需要在data中指定mod1: '', mod2: '', mod3: '', 加上 '', Vue会把mod1，mod2...直接当成值来使用。
+           -->
+      <!-- <div class="basic" :class="['mod1', 'mod2', 'mod3']" @click="changeMood">{{name}}</div> <br> <br> -->
+
+      <!-- 绑定class样式--对象写法，适用于：要绑定的样式个数确定,名字也确定,但要动态决定用不用 -->
+      <div class="basic" :class="classObj" @click="changeMood">{{name}}</div> <br> <br>
+      <!-- 绑定style样式 -->
+      <div class="basic" :class="classObj" :style="styleObj" @click="changeMood">{{name}}</div> <br> <br>
+    
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          name: '保定龙丽大弯钩',
+          mood: 'normal',
+          classArr: ['mod1', 'mod2', 'mod3'],
+          classObj: {
+            mod1: true,
+            mod2: true
+          },
+          styleObj: {
+            fontSize: 50 + 'px',
+            color: 'red'
+          }
+        },
+        methods: {
+          changeMood() {
+            const arr = ['happy', 'sad', 'normal']
+            const index = Math.floor(Math.random() * 3)
+            this.mood = arr[index]
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

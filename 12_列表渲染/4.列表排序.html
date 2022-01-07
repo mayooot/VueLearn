@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>列表排序</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-model="keyWord"> 
+      <button @click="sortType = 2">年龄升序</button>
+      <button @click="sortType = 1">年龄降序</button>
+      <button @click="sortType = 0">原顺序</button>
+      <ul>
+        <li v-for="(person, index) in filPersons" :key="person.id"> 
+          {{person.name}} -- {{person.age}} -- {{person.sex}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          sortType: 0, // 0 代表原顺序，1 代表 年龄降序， 2代表年龄升序
+          keyWord: '',
+          persons: [
+            {id: '001',name: '马冬梅',age: 18,sex: '女'},
+            {id: '002',name: '周冬雨',age: 30,sex: '女'},
+            {id: '003',name: '周杰伦',age: 28,sex: '男'},
+            {id: '004',name: '温兆伦',age: 21,sex: '男'}
+          ],
+        },
+        computed: {
+          filPersons() {
+            const arr = this.persons.filter((p) => {
+              return p.name.indexOf(this.keyWord) !== -1
+            })
+            if (this.sortType) {
+              // sortType为0的时候，if判断为false，为1或2时为真
+              arr.sort((p1, p2) => {
+                return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+              })
+            }
+
+            return arr
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>列表过滤</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-model="keyWord">
+      <ul>
+        <li v-for="(person, index) in filPersons" :key="person.id"> 
+          {{person.name}} -- {{person.age}} -- {{person.sex}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+
+      // watch实现
+      /* const vm = new Vue({
+        el: '#root',
+        data: {
+          keyWord: '',
+          persons: [
+            {id: '001',name: '马冬梅',age: 18,sex: '女'},
+            {id: '002',name: '周冬雨',age: 19,sex: '女'},
+            {id: '003',name: '周杰伦',age: 20,sex: '男'},
+            {id: '004',name: '温兆伦',age: 21,sex: '男'}
+          ],
+          filPersons: []
+        },
+        watch: {
+          keyWord: {
+            immediate: true,
+            handler(val) {
+                this.filPersons = this.persons.filter((p) => {
+                  // indexOf函数，可以返回某个指定字符串值在字符串中首次出现的位置，如果没有匹配的字符串则返回-1
+                  // 每个字符串都包含''(空字符), 例如：'abc'.indexOf('') = 0  
+                  return p.name.indexOf(val) !== -1
+                })
+            }
+          }
+        },
+      }) */
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          keyWord: '',
+          persons: [
+            {id: '001',name: '马冬梅',age: 18,sex: '女'},
+            {id: '002',name: '周冬雨',age: 19,sex: '女'},
+            {id: '003',name: '周杰伦',age: 20,sex: '男'},
+            {id: '004',name: '温兆伦',age: 21,sex: '男'}
+          ],
+        },
+        computed: {
+          filPersons() {
+            return this.persons.filter((p) => {
+              return p.name.indexOf(this.keyWord) !== -1
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

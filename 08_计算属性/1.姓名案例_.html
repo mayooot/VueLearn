@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- v-model:value,简写v-model
+           v-model默认就用来显示value，所以可以省去:value
+       -->
+      姓：<input type="text" v-model="firstName"> <br>
+      名：<input type="text" v-model="lastName"> <br>
+      <!-- 插值表达式里面，如果直接写方法名，则代表调用方法，加()代表使用返回值 -->
+      姓名：<span>{{fullName()}}</span>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          firstName: '张',
+          lastName: '三'
+          
+        },
+        methods: {
+          fullName() {
+            console.log('@----fullName');
+            return this.firstName + this.lastName
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

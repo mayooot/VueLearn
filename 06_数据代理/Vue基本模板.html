@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      {{name}}
+      {{address}}
+
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+      const vm = new Vue({
+        el: '#root',
+        data() {
+          return {
+            name: '李鸣',
+            address: '灵山'
+          }
+        }
+      })
+      console.log(vm);
+    </script>
+  </body>
+</html>

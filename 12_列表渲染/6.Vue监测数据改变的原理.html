@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>更新时的一个问题</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>学校信息</h1>
+      <h2>学校名称： {{name}}</h2>
+      <h2>学校地址： {{address}}</h2>
+      <hr>
+      <h1>学生信息</h1>
+      <h2>姓名： {{student.name}}</h2>
+      <!-- 当插值表达式解析到undefined时，不会把结果渲染到页面上 -->
+      <!-- <h2>性别：{{undefined}}</h2> -->
+      <h2 v-if="student.sex">性别：{{student.sex}}</h2> 
+      <button @click="addSex">点我添加性别</button>
+      <h2>真实年龄：{{student.age.rAge}}，对外年龄：{{student.age.sAge}}</h2>
+      <h2>朋友们</h2>
+      <ul>
+        <li v-for="p of student.friends">
+          {{p.name}} -- {{p.age}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          name: '尚硅谷',
+          address: '北京',
+          student: {
+            name: 'Tom',
+            // sex: '男',
+            age: {
+              rAge: 40,
+              sAge: 18
+            },
+            friends: [
+              {name: 'jerry', age: 35},
+              {name: 'tony', age: 39},
+            ]
+          }
+        },
+        methods: {
+          addSex() {
+            // Vue.set(this.student, 'sex', '男')
+            this.$set(this.student, 'sex', '男')
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

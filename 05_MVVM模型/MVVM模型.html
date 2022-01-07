@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MVVM模型</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>你好，{{name}}</h1>
+      <h1>你好，{{_isMounted}}</h1>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+
+      const vm = new Vue({
+        el: '#root',
+        data() {
+          return {
+            name: 'spring cloud',
+            address: '灵山'
+          }
+        }
+      })
+
+      console.log(vm)
+    </script>
+  </body>
+</html>

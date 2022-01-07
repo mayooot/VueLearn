@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>数据绑定</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+        <!-- 普通写法 -->
+        单向数据绑定： <input type="text" v-bind:value="name"><br>
+        双向数据绑定： <input type="text" v-model:value="name"><br>
+
+        <!-- 简写 -->
+        单向数据绑定： <input type="text" :value="name"><br>
+        双向数据绑定： <input type="text" v-model="name">
+        <h2 v-bind:x="name">你好啊</h2>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示
+      
+      new Vue({
+          el: '#root',
+          data: {
+              name: '尚硅谷123'
+          }
+      })
+
+    </script>
+  </body>
+</html>

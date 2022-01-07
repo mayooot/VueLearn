@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>初始Vue </title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+      <h1>Hello, {{name.toUpperCase()}}, {{age}}, {{address}}</h1>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; // 阻止 vue 在启动时生成生产提示
+
+      // 创建Vue实例
+       new Vue({
+        el: "#demo", // 用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串。
+        data: {
+          // data中用于存储数据，数据供el所指定的容器去使用。
+          name: "Richard Li",
+          age: "18",
+          address: '灵山'
+        }
+      });
+
+    </script>
+  </body>
+</html>

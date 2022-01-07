@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>更新时的一个问题</title>
+    <!-- 引入Vue-->
+    <script type="text/javascript" src="../js/Vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <button @click="changeMei">更改马冬梅的信息</button>
+      <ul>
+        <li v-for="(person, index) in persons" :key="person.id"> 
+          {{person.name}} -- {{person.age}} -- {{person.sex}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          persons: [
+            {id: '001',name: '马冬梅', age: 18, sex: '女'},
+            {id: '002',name: '周冬雨', age: 30, sex: '女'},
+            {id: '003',name: '周杰伦', age: 28, sex: '男'},
+            {id: '004',name: '温兆伦', age: 21, sex: '男'}
+          ],
+        }, 
+        methods: {
+          changeMei() {
+            // this.persons[0].name = '马保国', // 奏效
+            // this.persons[0].age = 50, // 奏效
+            // this.persons[0].sex = '男' // 奏效
+            this.persons[0] = {id: '001',name: '马保国', age: 50, sex: '男'}
+          }
+        },
+      })
+    </script>
+  </body>
+</html>
