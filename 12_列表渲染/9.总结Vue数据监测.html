@@ -14,14 +14,19 @@
   <body>
     <div id="root">
       <h1>学生信息</h1>
-      <button>年龄+1岁</button>
-      <button>添加性别属性，默认值：男</button>
-      <button>在列表首位添加一个朋友</button>
-      <button>修改第一个朋友的名字为张三</button>
-      <button>添加一个爱好</button>
-      <button>修改第一个爱好为开车</button>
+
+      <button @click="student.age++">年龄+1岁</button><br>
+      <button @click="addSex">添加性别属性，默认值：男</button><br>
+      <button @click="student.sex='女' ">修改性别为女</button><br>
+      <button @click="addFirstFriend">在列表首位添加一个朋友</button><br>
+      <button @click="updateFirstFriendName">修改第一个朋友的名字为张三</button><br>
+      <button @click="addHobby">添加一个爱好</button><br>
+      <button @click="updateFirstHobby">修改第一个爱好为开车</button><br>
+      <button @click="removeSmoke">移除爱好中的抽烟</button><br>
+
       <h2>姓名： {{student.name}}</h2>
       <h2>年龄：{{student.age}}</h2>
+      <h2 v-if="student.sex">性别：{{student.sex}}</h2>
       <h2>爱好</h2>
       <ul>
         <li v-for="(h, index) of student.hobby" :key="index">
@@ -50,7 +55,31 @@
               {name: 'tony', age: 39}
             ]
           }
-        }
+        },
+        methods: {
+          addSex() {
+            Vue.set(this._data.student, 'sex', '男')
+            // this.$set(this._data.student, 'sex', '男')
+          },
+          addFirstFriend() {
+            this.student.friends.unshift({name: '于谦', age: 50})
+          },
+          updateFirstFriendName() {
+            this.student.friends[0].name = '张三'
+          },
+          addHobby() {
+            this.student.hobby.unshift('打胶')
+          },
+          updateFirstHobby() {
+            // this.student.hobby.splice(0, 1, '开车')
+            Vue.set(this.student.hobby, 0, '开车')
+          },
+          removeSmoke() {
+            this.student.hobby = this.student.hobby.filter((h) => {
+              return h !== '抽烟'
+            })
+          }
+        },
       })
     </script>
   </body>
